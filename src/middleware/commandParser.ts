@@ -9,12 +9,12 @@ export interface StatefulContextMessageUpdate extends ContextMessageUpdate {
 }
 
 /**
- * Extract command argument. Regex matches strings of following format:
+ * Middleware function that parses command arguments. It is called when a command passed, like so:
  *
- * /command arg1 arg2 ...
+ * /cmd arg1 arg2
  *
- * @param {boolean} withSlash specify whether to match slash
- * @returns {RegExp} regex to use to extract command args
+ * In response, it will set command property to context with specified arguments
+ *
  */
 async function commandParser(ctx: StatefulContextMessageUpdate, next: Function) {
   if (ctx.updateType === 'message') {
