@@ -1,8 +1,6 @@
-import * as Koa from 'koa';
-import router from './router';
+import { config } from 'dotenv';
+import start from './bot';
 
-const app = new Koa();
+config();
 
-app.use(router.routes());
-
-export default app;
+start(process.env.BOT_TOKEN);
