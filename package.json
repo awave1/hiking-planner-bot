@@ -1,7 +1,7 @@
 {
   "name": "hiking-planner-bot",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "0.0.1",
+  "main": "src/app.ts",
   "repository": "git@github.com:awave1/hiking-planner-bot.git",
   "author": "Artem Golovin <artgolovin96@gmail.com>",
   "license": "MIT",
