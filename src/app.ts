@@ -1,6 +1,9 @@
-import { config } from 'dotenv';
-import start from './bot';
+import * as env from 'dotenv';
+import HikingBot from './bot';
 
-config();
+// Parse .env file
+env.config();
 
-start(process.env.BOT_TOKEN);
+// start the bot
+const bot = new HikingBot(process.env.BOT_TOKEN);
+bot.start();

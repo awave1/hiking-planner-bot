@@ -1,20 +1,34 @@
 import Telegraf, { ContextMessageUpdate } from 'telegraf';
-import { commandParser, StatefulContextMessageUpdate } from './middleware';
+import { commandParser } from './middleware';
 
-const TODO = (ctx: ContextMessageUpdate) => ctx.reply('@TODO');
+import { start } from './commands';
 
-function start(token: string) {
-  const bot = new Telegraf(token);
-  bot.use(commandParser);
+class HikingBot {
+  private token: string;
+  private bot: Telegraf<ContextMessageUpdate>;
 
-  bot.start(TODO);
-  bot.help(TODO);
+  constructor(token: string) {
+    this.token = token;
+    this.bot = new Telegraf(token);
+  }
 
-  bot.command('addHike', (ctx: StatefulContextMessageUpdate) => {
-    TODO(ctx);
-  });
+  start() {
+    this.initializeMiddleware();
+    this.initializeCommands();
+    this.bot.launch();
+  }
 
-  bot.launch();
+  private initializeMiddleware() {
+    if (process.env.NODE_ENV === 'development') {
+      this.bot.use(Telegraf.log());
+    }
+
+    this.bot.use(commandParser);
+  }
+
+  private initializeCommands() {
+    this.bot.start(start);
+  }
 }
 
-export default start;
+export default HikingBot;

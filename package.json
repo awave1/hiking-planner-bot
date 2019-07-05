@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "dev": "nodemon --watch './src/**/*' -e ts --exec ts-node ./src/app.ts"
+    "dev": "NODE_ENV=development nodemon --watch './src/**/*' -e ts --exec ts-node ./src/app.ts"
   },
   "husky": {
     "hooks": {
